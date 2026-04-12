@@ -16,7 +16,7 @@
       <h1>Unidades absolutas</h1>
       <h2>As unidades absolutas são fixas e não se adaptam a tela.</h2>
       <h2>px (pixel)</h2>
-      <p>O pixel é a unidade virtual padronizda pelo navegador, 1px = 1/96 de 1 polegada (in). Quando usamos pixels isso implica que queremos que um elemento ocupe determinado espaço da tela</p>
+      <p>O pixel é a unidade virtual padronizada pelo navegador, 1px = 1/96 de 1 polegada (in). Quando usamos pixels isso implica que queremos que um elemento ocupe determinado espaço da tela</p>
       <pre>
       p {
         font-size: 20px;
@@ -30,7 +30,7 @@
       <p>Isso significa que todos os elementos p (parágrafos) da página vão ter um tamanho que o navegador considera equivalente a 20 unidades de tela.</p>
       <h2>Resultado visual</h2>
       <p style="font-size: 20px; margin-top: 10px; margin-bottom: 0;">Este parágrafo tem font-size: 20px</p>
-      <div class=" box px">300px</div>
+      <div class="exemplo-px">300px</div>
       <div class="dica-usar">
         <h2>Quando usar:</h2>
         <p>Bordas, margens, ícones pequenos, ajustes finos - porque o pixel está associado a elementos de um tamanho específico e não devem variar
@@ -261,31 +261,60 @@
     </div>
     
   <div class="demo">
-    <h2>Interativo</h2>  
-    <h2>Responsividade texto</h2>
-    <p id="texto">Fatec de Votorantim</p><input type="number" id="tamanhoTexto" value="16">
-    <select id="unidadeTexto">
-      <option value="px">px</option>
-      <option value="%">%</option>
-      <option value="em">em</option>
-      <option value="rem">rem</option>
-      <option value="vw">vw</option>
-      <option value="vh">vh</option>
-    </select>
-    
-    <button onclick="mudarTexto()">Aplicar</button>
+  <h2>Interativo</h2>  
+
+  <h2>Responsividade texto</h2>
+    <div class="grupo">
+      <label>Tamanho:</label>
+      <input type="number" id="tamanhoTexto" value="16">
+
+      <select id="unidadeTexto">
+        <option value="px">px</option>
+        <option value="%">%</option>
+        <option value="em">em</option>
+        <option value="rem">rem</option>
+        <option value="vw">vw</option>
+        <option value="vh">vh</option>
+      </select>
+
+      <button onclick="mudarTexto()">Aplicar</button>
+    </div>
+
+    <p id="texto">Fatec de Votorantim</p>
+
     <h2>Responsividade imagem</h2>
-    <img id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4g7UcKylV1saDKMWhqiaMg605rEiNfTligw&s"><input type="number" id="tamanhoImg" value="200">
-    <select id="unidadeImg">
-      <option value="px">px</option>
-      <option value="%">%</option>
-      <option value="vw">vw</option>
-      <option value="vh">vh</option>
-      <option value="em">em</option>
-    </select>
-    <button onclick="mudarImg()">Aplicar</button>
+    <div class="grupo">
+      <label>Tamanho:</label>
+      <input type="number" id="tamanhoImg" value="200">
+
+      <select id="unidadeImg">
+        <option value="px">px</option>
+        <option value="%">%</option>
+        <option value="vw">vw</option>
+        <option value="vh">vh</option>
+        <option value="em">em</option>
+      </select>
+
+      <button onclick="mudarImg()">Aplicar</button>
+    </div>
+
+    <img id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4g7UcKylV1saDKMWhqiaMg605rEiNfTligw&s">
+</div>
+
+  <h2>Simulação de dispositivos: unidades CSS</h2>
+
+  <button onclick="mudarTela(360,600)">Celular</button>
+  <button onclick="mudarTela(1200,800)">Desktop</button>
+
+  <div id="tela" class="tela" style="width:360px; height:600px;">
+    <div class="box px" id="px">px</div>
+    <div class="box vw" id="vw">vw</div>
+    <div class="box vh" id="vh">vh</div>
+    <div class="box percent" id="percent">%</div>
   </div>
-  
+
+  <p id="info"></p>
+
 
   
   <script>
@@ -300,6 +329,30 @@
     let u = document.getElementById('unidadeImg').value;
     document.getElementById('img').style.width = v + u;
   }
+
+  function mudarTela(largura, altura) {
+    const tela = document.getElementById("tela");
+    tela.style.width = largura + "px";
+    tela.style.height = altura + "px";
+
+    // simulando unidades
+    document.getElementById("px").style.width = "200px";
+
+    document.getElementById("vw").style.width = (largura * 0.3) + "px";
+
+    document.getElementById("vh").style.width = (altura * 0.3) + "px";
+
+    document.getElementById("percent").style.width = (largura * 0.5) + "px";
+
+    document.getElementById("info").innerHTML = 
+      "Tela: " + largura + "x" + altura + "px<br>" +
+      "30vw = " + (largura * 0.3).toFixed(1) + "px<br>" +
+      "30vh = " + (altura * 0.3).toFixed(1) + "px<br>" +
+      "50% = " + (largura * 0.5).toFixed(1) + "px";
+  }
+
+  // iniciar
+  mudarTela(360,600);
 
   </script>
 </body>
