@@ -35,19 +35,19 @@ p {
 
 .cm{
     background-color: lightskyblue;
-    width: 5cm;
+    width: 10cm;
     margin-top: 5px;
 }
 
 .mm{
     background-color: rgb(162, 220, 220);
-    width:5mm;
+    width:10mm;
     margin-top: 5px;
 }
 
 .in{
     background-color: rgb(232, 232, 137);
-    width: 5in;
+    width: 10in;
     margin-top: 5px;
 }
 
@@ -55,6 +55,7 @@ p {
     background-color: lightgreen;
     width: 10pt;
     margin-top: 5px;
+    
 }
 
 .pc{
